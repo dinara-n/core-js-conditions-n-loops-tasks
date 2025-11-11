@@ -446,20 +446,36 @@ function sortByAsc(arr) {
  */
 function shuffleChar(str, iterations) {
   let res = str;
+  let first = '';
   for (let i = 0; i < iterations; i += 1) {
-    let odds = '';
-    let evens = '';
-    for (let j = 0; j < res.length; j += 1) {
-      if (j % 2 === 0) {
-        evens += res[j];
-      } else {
+    if (i !== 0 && res === str) {
+      res = first;
+    } else {
+      let odds = '';
+      let evens = '';
+      const { length } = res;
+      for (let j = 1; j < length; j += 2) {
+        evens += res[j - 1];
         odds += res[j];
       }
+      if (length % 2 === 1) {
+        evens += res[length - 1];
+      }
+      res = `${evens}${odds}`;
+      if (i === 0) {
+        first = res;
+      }
     }
-    res = `${evens}${odds}`;
   }
   return res;
 }
+// for (let j = 0; j < res.length; j += 1) {
+//   if (j % 2 === 0) {
+//     evens += res[j];
+//   } else {
+//     odds += res[j];
+//   }
+// }
 
 /**
  * Returns the nearest largest integer consisting of the digits of the given positive integer.
