@@ -400,31 +400,43 @@ function rotateMatrix(matrix) {
 //     }
 //   }
 // }
+// function sortByAsc(arr) {
+//   if (arr.length < 2) {
+//     return arr;
+//   }
+//   const array = arr;
+//   let left = [];
+//   let right = [];
+//   let center = [];
+//   const pivot = array[0];
+//   for (let i = 0; i < array.length; i += 1) {
+//     if (array[i] < pivot) {
+//       left = [...left, array[i]];
+//     }
+//     if (array[i] > pivot) {
+//       right = [...right, array[i]];
+//     }
+//     if (array[i] === pivot) {
+//       center = [...center, array[i]];
+//     }
+//   }
+//   const newArray = [...sortByAsc(left), ...center, ...sortByAsc(right)];
+//   for (let i = 0; i < newArray.length; i += 1) {
+//     array[i] = newArray[i];
+//   }
+//   return array;
+// }
 function sortByAsc(arr) {
-  if (arr.length < 2) {
-    return arr;
-  }
   const array = arr;
-  let left = [];
-  let right = [];
-  let center = [];
-  const pivot = array[0];
-  for (let i = 0; i < array.length; i += 1) {
-    if (array[i] < pivot) {
-      left = [...left, array[i]];
+  for (let i = 1; i < array.length; i += 1) {
+    const current = array[i];
+    let j = i - 1;
+    while (j >= 0 && array[j] > current) {
+      array[j + 1] = array[j];
+      j -= 1;
     }
-    if (array[i] > pivot) {
-      right = [...right, array[i]];
-    }
-    if (array[i] === pivot) {
-      center = [...center, array[i]];
-    }
+    array[j + 1] = current;
   }
-  const newArray = [...sortByAsc(left), ...center, ...sortByAsc(right)];
-  for (let i = 0; i < newArray.length; i += 1) {
-    array[i] = newArray[i];
-  }
-  return array;
 }
 
 /**
