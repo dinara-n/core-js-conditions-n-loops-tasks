@@ -333,8 +333,62 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  const matrix = [];
+  for (let i = 0; i < size; i += 1) {
+    matrix[i] = [];
+    for (let j = 0; j < size; j += 1) {
+      matrix[i][j] = null;
+    }
+  }
+  const maxElem = size ** 2;
+  let currentElem = 1;
+  let i = 0;
+  let j = 0;
+  let direction = 'right';
+  while (currentElem <= maxElem) {
+    if (direction === 'right' && currentElem <= maxElem) {
+      while (typeof matrix[i] !== 'undefined' && matrix[i][j] === null) {
+        matrix[i][j] = currentElem;
+        currentElem += 1;
+        j += 1;
+      }
+      j -= 1;
+      i += 1;
+      direction = 'down';
+    }
+    if (direction === 'down' && currentElem <= maxElem) {
+      while (typeof matrix[i] !== 'undefined' && matrix[i][j] === null) {
+        matrix[i][j] = currentElem;
+        currentElem += 1;
+        i += 1;
+      }
+      i -= 1;
+      j -= 1;
+      direction = 'left';
+    }
+    if (direction === 'left' && currentElem <= maxElem) {
+      while (typeof matrix[i] !== 'undefined' && matrix[i][j] === null) {
+        matrix[i][j] = currentElem;
+        currentElem += 1;
+        j -= 1;
+      }
+      j += 1;
+      i -= 1;
+      direction = 'up';
+    }
+    if (direction === 'up' && currentElem <= maxElem) {
+      while (typeof matrix[i] !== 'undefined' && matrix[i][j] === null) {
+        matrix[i][j] = currentElem;
+        currentElem += 1;
+        i -= 1;
+      }
+      i += 1;
+      j += 1;
+      direction = 'right';
+    }
+  }
+  return matrix;
 }
 
 /**
